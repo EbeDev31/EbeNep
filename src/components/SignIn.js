@@ -4,21 +4,20 @@ import { Redirect } from 'react-router-dom'
 
 class SignIn extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
 
     const token = localStorage.getItem("token")
     let loggedIn = true;
 
-    if(token==null)
-    {
-        loggedIn=false
+    if (token == null) {
+      loggedIn = false
     }
 
     this.state = {
       email: '',
       password: '',
-      loggedIn:loggedIn
+      loggedIn: loggedIn
     }
   }
 
@@ -31,19 +30,18 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {email,password} = this.state
-    if(email==="a"&& password==="a"){
-      localStorage.setItem("token","random12345")
+    const { email, password } = this.state
+    if (email === "a" && password === "a") {
+      localStorage.setItem("token", "random12345")
       this.setState({
-        loggedIn:true
+        loggedIn: true
       })
     }
     console.log(this.state)
   }
   render() {
-    if(this.state.loggedIn)
-    {
-      return <Redirect to="/Home"/>
+    if (this.state.loggedIn) {
+      return <Redirect to="/Home" />
     }
     return (
       <div className="container">
@@ -67,8 +65,8 @@ class SignIn extends Component {
 }
 
 const mapStateToProps = (state) => {
-       return{
-      }
+  return {
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

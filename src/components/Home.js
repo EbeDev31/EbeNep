@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom"
-import {getUsers} from "../redux/actions/userActions"
+import { getUsers } from "../redux/actions/userActions"
 
 import { connect } from 'react-redux'
 
@@ -18,23 +18,23 @@ class Home extends Component {
             loggedIn: loggedIn
         }
     }
-componentDidMount(){
-    this.getUsers()
-}
+    componentDidMount() {
+        this.getUsers()
+    }
 
-    getUsers=()=>{
+    getUsers = () => {
         fetch("https://api.github.com/users")
-        .then(response => response.json())
-        .then(json => {
-            console.log(json)
-            this.props.getUsers(json);
-        }
-            
-            // this.setState({
-      
-            // })
-          )
-      };
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                this.props.getUsers(json);
+            }
+
+                // this.setState({
+
+                // })
+            )
+    };
     render() {
         if (this.state.loggedIn === false) {
             return <Redirect to="/" />
@@ -52,7 +52,7 @@ componentDidMount(){
                 
                 
                 */
-                    
+
                 }
 
             </div>
@@ -62,8 +62,8 @@ componentDidMount(){
 
 const mapStateToProps = (state) => {
     return {
-        users:state.users
-      }
+        users: state.users
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

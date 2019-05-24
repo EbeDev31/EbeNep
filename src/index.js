@@ -4,28 +4,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {usersActions} from "./redux/actions/userActions"
-import { createStore} from 'redux'
+import { usersActions } from "./redux/actions/userActions"
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 const initState = {
-    users:[]
-  
-  }
-  
-  const rootReducer = (state = initState, action) => {
+    users: []
+
+}
+
+const rootReducer = (state = initState, action) => {
     switch (action.type) {
-      case 'GET_USERS':
-        
-        return {
-            ...state,
-            users:action.users
-        };
-      default:
-        return state;
+        case 'GET_USERS':
+
+            return {
+                ...state,
+                users: action.users
+            };
+        default:
+            return state;
     }
-  };
-const store = createStore(rootReducer );
+};
+const store = createStore(rootReducer);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
