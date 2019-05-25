@@ -15,8 +15,9 @@ const initState = {
 
 const rootReducer = (state = initState, action) => {
     switch (action.type) {
+        
         case 'GET_USERS':
-
+                console.log("reducer Called")
             return {
                 ...state,
                 users: action.users

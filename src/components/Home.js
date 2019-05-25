@@ -22,20 +22,26 @@ class Home extends Component {
         this.getUsers()
     }
 
+    /**
+     * Fucntion in charge of api fetch for users
+     */
     getUsers = () => {
         fetch("https://api.github.com/users")
             .then(response => response.json())
             .then(json => {
-                console.log(json)
                 this.props.getUsers(json);
             }
+            ).catch(err => {
+                console.log("Somehting Went wrong. Message says: ", err)
+            }
 
-                // this.setState({
-
-                // })
             )
+
     };
     render() {
+        const apiFetch = this.props.users.map(user => {
+            return <p>{user.login}</p>
+        })
         if (this.state.loggedIn === false) {
             return <Redirect to="/" />
         }
@@ -43,16 +49,11 @@ class Home extends Component {
             <div style={{}}>
                 <p>HomePage After Login</p>
 
-                <Link to="/" >Logout</Link>
+                <Link to="/logout" >Logout</Link>
 
                 {/**Display Api Fetch */}
-                {/**this.props.getUsers().map(user=>{
-                        return user.login
-                    })
-                
-                
-                */
-
+                {
+                    apiFetch
                 }
 
             </div>
@@ -61,6 +62,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
+
     return {
         users: state.users
     }
